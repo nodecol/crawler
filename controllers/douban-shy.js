@@ -113,9 +113,11 @@ exports.crwalerShyData = function (crwalerCallback) {
                   cb1(err);
                 } else {
                   var body = sres.body;
-                  $(element).attr('width', imageinfo(body).width);
-                  $(element).attr('height', imageinfo(body).height);
-                  imgs.push($(element).toString());
+                  var imginfo = {};
+                  imginfo.width = imageinfo(body).width;
+                  imginfo.height = imageinfo(body).height;
+                  imginfo.url = imgurl;
+                  imgs.push(imginfo);
                   cb1();
                 }
               });
@@ -153,20 +155,25 @@ exports.crwalerShyData = function (crwalerCallback) {
     //将作者居住地信息保存在tags中
     get_topic_author_location: ['get_topic_content', function (callback, results) {
       var getLocationWithPeoplePage = function (obj, cb) {
-        fetchPageSourceByUrl(obj.quote_author_url, function (err, data) {
-          if (err) {
-            cb(err);
-          } else {
-            var $ = cheerio.load(data);
-            var location = $('li.loc').text().replace(/\n|\s|常居:/ig, '');
-            if (obj.tags.indexOf(location) < 0 ) {
-              obj.tags.push({ 'tag': 'location', 'name': location });
+        debug('current author url is ' + obj.quote_author_url);
+        if (!obj.quote_author_url) {
+          cb();
+        } else {
+          fetchPageSourceByUrl(obj.quote_author_url, function (err, data) {
+            if (err) {
+              cb(err);
+            } else {
+              var $ = cheerio.load(data);
+              var location = $('li.loc').text().replace(/\n|\s|常居:/ig, '');
+              if (obj.tags.indexOf(location) < 0 ) {
+                obj.tags.push({ 'tag': 'location', 'name': location });
+              }
+              setTimeout(function () {
+                cb();
+              }, 500);
             }
-            setTimeout(function () {
-              cb();
-            }, 500);
-          }
-        });
+          });
+        }
       };
 
       async.mapLimit(results.get_topic_content, 1, function (url, cb) { // 通过mapLimit控制最大并发
