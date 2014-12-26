@@ -127,7 +127,7 @@ exports.crwalerShyData = function (crwalerCallback) {
                 topicdata['quote_author'] = $('.topic-doc .from a').text().trim();
                 topicdata['quote_author_url'] = $('.topic-doc .from a').attr('href');
                 topicdata['title'] = $('h1').text().trim();              
-                topicdata['tags'] = [{ 'shy': '请不要害羞' }];
+                topicdata['tags'] = [{ 'tag': 'shy', 'name': '请不要害羞' }];
                 topicdata['create_time'] = $('.topic-doc .color-green').text().trim();
                 topicdata['content'] = $('#link-report').html();
                 topicdata['imgs'] = imgs;
@@ -160,7 +160,7 @@ exports.crwalerShyData = function (crwalerCallback) {
             var $ = cheerio.load(data);
             var location = $('li.loc').text().replace(/\n|\s|常居:/ig, '');
             if (obj.tags.indexOf(location) < 0 ) {
-              obj.tags.push({ 'location': location });
+              obj.tags.push({ 'tag': 'location', 'name': location });
             }
             setTimeout(function () {
               cb();
