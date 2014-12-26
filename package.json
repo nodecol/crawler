@@ -1,0 +1,36 @@
+{
+  "name": "crawler",
+  "version": "0.0.0",
+  "description": "node crawler",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skcary/crawler.git"
+  },
+  "keywords": [
+    "crawler",
+    "superagent",
+    "cheerio"
+  ],
+  "author": "skcary",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skcary/crawler/issues"
+  },
+  "homepage": "https://github.com/skcary/crawler",
+  "dependencies": {
+    "async": "^0.9.0",
+    "cheerio": "^0.18.0",
+    "debug": "^2.1.0",
+    "imageinfo": "^1.0.4",
+    "lodash": "^2.4.1",
+    "mongoose": "^3.8.21",
+    "superagent": "^0.21.0"
+  },
+  "devDependencies": {
+    "supervisor": "^0.6.0"
+  }
+}
