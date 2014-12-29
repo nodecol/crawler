@@ -1,4 +1,4 @@
-var debug = require('debug')('qiushi-imgrank')
+var debug = require('debug')('crawler-qiushi-imgrank')
   , superagent = require('superagent')
   , cheerio = require('cheerio')
   , async = require('async')
@@ -8,7 +8,7 @@ var debug = require('debug')('qiushi-imgrank')
 var topic = require('../models/topic');
 
 // 抓取的列表页最大数
-var fetch_max_page = 1;
+var fetch_max_page = 10;
 
 var header = {};
 
@@ -58,7 +58,7 @@ exports.crwalerImgrankData = function (crwalerCallback) {
               // 延时处理，避免被屏蔽
               setTimeout(function () {
                 // 抓取下一页 递归抓其他页
-                getUrlByArticleListPageUrl(nextUrl, function (err, data) {
+                getUrlByArticleListPageUrl('http://www.qiushibaike.com' + nextUrl, function (err, data) {
                   if (err) {
                     return cb(err);
                   } else {

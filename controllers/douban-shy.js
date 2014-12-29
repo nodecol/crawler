@@ -1,4 +1,4 @@
-var debug = require('debug')('douban-shy')
+var debug = require('debug')('crawler-douban-shy')
   , superagent = require('superagent')
   , cheerio = require('cheerio')
   , async = require('async')
@@ -17,7 +17,7 @@ var header = {
   'Accept-Language' : 'en-US,en;q=0.8,zh-CN;q=0.6,zh-TW;q=0.4'
 }
 // 抓取的列表页最大数
-var fetch_max_page = 1;
+var fetch_max_page = 10;
 
 /**
  * 根据地址抓去页面源代码
