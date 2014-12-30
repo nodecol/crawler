@@ -13,7 +13,7 @@ exports.saveShyData = function (data, callback) {
       temp.login_name = 'sk';
       temp.password = 'password';
       temp.email = 'email';
-      temp.access_token = require('node-uuid').v4();
+      //temp.access_token = require('node-uuid').v4();
       temp.save(function (err, user) {
         if (err) {
           return callback(err);
