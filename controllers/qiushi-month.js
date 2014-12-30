@@ -1,4 +1,4 @@
-var debug = require('debug')('crawler-qiushi-imgrank')
+var debug = require('debug')('crawler-qiushi-month')
   , superagent = require('superagent')
   , cheerio = require('cheerio')
   , async = require('async')
@@ -32,7 +32,7 @@ var fetchPageSourceByUrl = function (url, callback) {
   });
 };
 
-exports.crwalerImgrankData = function (crwalerCallback) {
+exports.crwalerMonthData = function (crwalerCallback) {
   //通过async.auto控制层层抓取所需数据
   async.auto({
     // 抓取TOPIC列表
@@ -167,7 +167,7 @@ exports.crwalerImgrankData = function (crwalerCallback) {
 }
 
 if (require.main === module) {
-  exports.crwalerImgrankData(function (err, data) {
+  exports.crwalerMonthData(function (err, data) {
     if (err) {
       debug(err);
     } else {
