@@ -7,6 +7,10 @@ var debug = require('debug')('crawler-douban-shy')
 
 var topic = require('../models/topic');
 
+// 抓取的第一页地址
+var fetch_first_page_url = 'http://www.douban.com/group/haixiuzu/discussion?start=0';
+// 抓取的列表页最大数
+var fetch_max_page = 10;
 // 抓取时所使用的header
 var header = {
   'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -16,8 +20,6 @@ var header = {
   'Connection' : 'keep-alive',
   'Accept-Language' : 'en-US,en;q=0.8,zh-CN;q=0.6,zh-TW;q=0.4'
 }
-// 抓取的列表页最大数
-var fetch_max_page = 10;
 
 /**
  * 根据地址抓去页面源代码
@@ -82,7 +84,7 @@ exports.crwalerShyData = function (crwalerCallback) {
         }); // end fetchPageSourceByUrl
       };
       // 开始抓取，从第一页开始
-      getUrlByTopicListPageUrl('http://www.douban.com/group/haixiuzu/discussion?start=0', function (err, data) {
+      getUrlByTopicListPageUrl(fetch_first_page_url, function (err, data) {
         if (err) {
           return callback(err);
         } else {

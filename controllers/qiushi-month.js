@@ -8,7 +8,7 @@ var debug = require('debug')('crawler-qiushi-imgrank')
 var topic = require('../models/topic');
 
 // 抓取的第一页地址
-var fetch_first_page_url = 'http://www.qiushibaike.com/imgrank';
+var fetch_first_page_url = 'http://www.qiushibaike.com/month';
 // 抓取的列表页最大数
 var fetch_max_page = 10;
 // 抓取时所使用的header
