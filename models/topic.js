@@ -8,7 +8,7 @@ exports.saveShyData = function (data, callback) {
     }
     //若没有USER
     if (!user) {
-      var temp = new exports.User();
+      var temp = new User();
       temp.nick_name = 'sk';
       temp.login_name = 'sk';
       temp.password = 'password';
