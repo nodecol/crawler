@@ -2,7 +2,8 @@ var debug = require('debug')('crawler-app')
   , async = require('async');
 
 var douban_shy = require('./controllers/douban-shy')
-  , qiushi_month = require('./controllers/qiushi-month');
+  , qiushi_month = require('./controllers/qiushi-month')
+  , budejie_img_jingxuan = require('./controllers/budejie-img-jingxuan');
 
 async.auto({
   doubanShy: function (callback) {
@@ -16,6 +17,15 @@ async.auto({
   },
   qiushiMonth: function (callback) {
     qiushi_month.crwalerMonthData(function (err, data) {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, data);
+      }
+    });
+  },
+  budejieImgJingxuan: function (callback) {
+    budejie_img_jingxuan.crwalerBudejieData(function (err, data) {
       if (err) {
         callback(err);
       } else {
